@@ -1,4 +1,4 @@
- export default function ScoreForm({ time, onSubmit }) {
+export default function ScoreForm({ time, onSubmit }) {
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -13,8 +13,7 @@
   }
 
   return (
-    <div className="victory-screen">
-      <div className="victory-card">
+       <div className="victory-card">
         <h2>🏆 You found them all!</h2>
 
         <p>Great job!</p>
@@ -33,6 +32,7 @@
             placeholder="Your name"
             maxLength="20"
             required
+            autoFocus
           />
 
           <button type="submit">
@@ -40,7 +40,5 @@
           </button>
         </form>
       </div>
-    </div>
-  );
-}
-
+   );
+} 

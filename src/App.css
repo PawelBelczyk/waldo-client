@@ -76,42 +76,93 @@ input {
 
   transform: translate(-50%, -50%);
 
-  pointer-events: none;
+  pointer-events: auto;
 }
-
 .character-menu {
-  position: absolute;
-
-  top: 100%;
-  left: 50%;
-
-  transform: translateX(-50%);
-
   display: flex;
   flex-direction: column;
 
-  min-width: 140px;
-
-  margin-top: 10px;
+  min-width: 190px;
 
   background: white;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
 
   overflow: hidden;
 
-  pointer-events: auto;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+
+  border: 1px solid #ddd;
+}
+
+.character-menu-title {
+  padding: 10px 14px;
+
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #777;
+
+  background: #f5f5f5;
+
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .character-menu button {
-  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  width: 100%;
+
+  padding: 11px 14px;
 
   border: none;
+  border-bottom: 1px solid #eee;
+
   background: white;
 
+  font-size: 1rem;
+
   cursor: pointer;
+
+  text-align: left;
+
+  transition: background 0.15s;
+}
+
+.character-menu button:hover:not(:disabled) {
+  background: #f0f0f0;
+}
+
+.character-menu button:last-child {
+  border-bottom: none;
+}
+
+.character-icon {
+  width: 28px;
+
+  font-size: 1.4rem;
+
+  text-align: center;
+}
+
+.character-name {
+  flex: 1;
+}
+
+.character-check {
+  font-size: 1.2rem;
+  color: green;
+}
+
+.character-menu button.found {
+  color: #999;
+  background: #f7f7f7;
+
+  text-decoration: line-through;
+
+  cursor: default;
 }
 
 .character-menu button:hover {
@@ -257,3 +308,191 @@ input {
   }
 }
 
+.victory-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.victory-card {
+  width: min(450px, 90%);
+  padding: 40px;
+
+  background: white;
+  border-radius: 16px;
+
+  text-align: center;
+
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.victory-card h2 {
+  margin-top: 0;
+  font-size: 2rem;
+}
+
+.final-time {
+  font-size: 1.3rem;
+  margin: 25px 0;
+}
+
+.victory-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.victory-card input {
+  padding: 12px;
+
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.victory-card button {
+  padding: 12px;
+
+  border: none;
+  border-radius: 6px;
+
+  background: #222;
+  color: white;
+
+  cursor: pointer;
+}
+
+.victory-card button:hover {
+  background: #444;
+}
+
+.new-game-button {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+
+  z-index: 10001;
+
+  padding: 12px 22px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: white;
+  color: #222;
+
+  font-weight: bold;
+  font-size: 1rem;
+
+  cursor: pointer;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.new-game-button:hover {
+  background: #eee;
+}
+.game-instructions {
+  margin: 10px 0 0;
+  max-width: 700px;
+
+  font-size: 1rem;
+  line-height: 1.6;
+
+  color: #555;
+}
+
+.game-instructions strong {
+  color: #222;
+  font-size: 1.05rem;
+}
+
+.game-instructions span {
+  display: inline-block;
+  margin-top: 3px;
+
+  font-weight: 600;
+  color: #444;
+}
+
+@media (max-width: 700px) {
+  .app {
+    padding: 12px;
+  }
+
+  .header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px 12px;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .header h1 {
+    font-size: 1.5rem;
+  }
+
+  .game-instructions {
+    margin-top: 6px;
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  .game-instructions strong {
+    font-size: 0.9rem;
+  }
+
+  .game-instructions span {
+    margin-top: 2px;
+  }
+
+  .timer {
+    font-size: 1rem;
+    white-space: nowrap;
+  }
+
+  .progress {
+    grid-column: 1 / -1;
+    margin: 0;
+
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+
+  .game-image-container {
+    width: 100%;
+  }
+
+  .character-menu {
+    min-width: 160px;
+  }
+
+  .character-menu button {
+    padding: 9px 12px;
+    font-size: 0.9rem;
+  }
+
+  .new-game-button {
+    top: 12px;
+    right: 12px;
+    padding: 9px 14px;
+    font-size: 0.85rem;
+  }
+
+  .victory-card {
+    width: calc(100% - 30px);
+    padding: 25px 20px;
+  }
+
+  .victory-card h2 {
+    font-size: 1.5rem;
+  }
+}
+.game-image-container {
+  width: min(1400px, 100%);
+}

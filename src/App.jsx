@@ -123,8 +123,7 @@ try {
   setMessage(`${character.name} found!`);
   setTarget(null);
 
-if (result.finished) {
-  console.log("GAME FINISHED!", result);
+if (foundCharacters.length + 1 === characters.length) {
   setGameFinished(true);
   setFinalTime(result.time);
 }
@@ -139,29 +138,40 @@ if (result.finished) {
 }
 
 async function handleScoreSubmit(name) {
-try {
-await createScore(name, finalTime);
-await loadScores();
-} catch (error) {
-console.error("Error saving score:", error);
-setMessage("Could not save score.");
-}
-}
-
+  try {
+    await createScore(name, finalTime);
+    await loadScores();
+    startGame();
+  } catch (error) {
+    console.error("Error saving score:", error);
+    setMessage("Could not save score.");
+  }
+}0
  
 
-return ( <div className="app"> <header className="header"> <h1>Where's Waldo?</h1>
+return ( <div className="app"> <header className="header">
+ <div>
+  <h1>Where's Waldo?</h1>
 
- 
-    <Timer
-      startedAt={startedAt}
-      stopped={gameFinished}
-    />
+  <p className="game-instructions">
+    🔎 <strong>Find all 5 hidden characters!</strong>
+    <br />
+    Click anywhere on the picture and choose who you think is hiding there.
+    <br />
+    <span>⏱️ Find them all as quickly as you can!</span>
+  </p>
+</div>
 
-    <p className="progress">
-      Found: {foundCharacters.length} / {characters.length}
-    </p>
-  </header>
+  <Timer
+    startedAt={startedAt}
+    stopped={gameFinished}
+  />
+
+  <p className="progress">
+    Found: {foundCharacters.length} / {characters.length}
+  </p>
+</header>
+
 
   {message && (
     <div className="message">
@@ -233,12 +243,21 @@ return ( <div className="app"> <header className="header"> <h1>Where's Waldo?</h
     <Leaderboard scores={scores} />
   </main>
 
-  {gameFinished && (
+{gameFinished && (
+  <div className="victory-screen">
+    <button
+      className="new-game-button"
+      onClick={startGame}
+    >
+      New Game
+    </button>
+
     <ScoreForm
       time={finalTime}
       onSubmit={handleScoreSubmit}
     />
-  )}
+  </div>
+)}
 </div>
  
 
