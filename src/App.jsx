@@ -105,6 +105,9 @@ try {
     target.x,
     target.y
   );
+  
+  console.log("GUESS RESULT:", result);
+
 
   if (!result.correct) {
     setMessage("Wrong character or location.");
