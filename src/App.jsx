@@ -120,10 +120,12 @@ try {
   setMessage(`${character.name} found!`);
   setTarget(null);
 
-  if (result.finished) {
-    setGameFinished(true);
-    setFinalTime(result.time);
-  }
+if (result.finished) {
+  console.log("GAME FINISHED!", result);
+  setGameFinished(true);
+  setFinalTime(result.time);
+}
+
 } catch (error) {
   console.error("Error making guess:", error);
   setMessage("Something went wrong.");
